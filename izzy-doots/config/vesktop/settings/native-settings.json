@@ -1,0 +1,11 @@
+{
+    "plugins": {},
+    "customCspRules": {
+        "wallpaperaccess.com": [
+            "connect-src",
+            "img-src",
+            "style-src",
+            "font-src"
+        ]
+    }
+}

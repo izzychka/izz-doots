@@ -1,0 +1,36 @@
+/**
+ * @name system24 matugen
+ */
+@import url('https://refact0r.github.io/system24/build/system24.css');
+
+:root {
+    --bg-1: #45475a;
+    --bg-2: #313244;
+    --bg-3: #181825;
+    --bg-4: #1e1e2e;
+
+    --text-1: #cdd6f4;
+    --text-2: #cdd6f4;
+    --text-3: #bac2de;
+    --text-4: #7f849c;
+    --text-5: #585b70;
+
+    --red-1: #b4befe;
+    --red-2: #cba6f7;
+    --red-3: #cba6f7;
+    --red-4: #cba6f7;
+    --red-5: #b4befe;
+
+    --colors: on;
+    --hover: hsla(230, 15%, 53%, 0.1);
+    --active: hsla(230, 15%, 53%, 0.2);
+    --active-2: hsla(230, 15%, 53%, 0.3);
+    --message-hover: hsla(230, 0%, 0%, 0.1);
+}
+
+body {
+    --font: 'DM Mono';
+    --code-font: 'DM Mono';
+    font-weight: 300;
+    /* ... rest of your body options ... */
+}

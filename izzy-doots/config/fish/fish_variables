@@ -1,0 +1,21 @@
+# This file contains fish universal variable definitions.
+# VERSION: 3.0
+SETUVAR __fish_initialized:4300
+SETUVAR fish_color_autosuggestion:\x23899390
+SETUVAR fish_color_command:\x2383d5c5
+SETUVAR fish_color_comment:\x23899390
+SETUVAR fish_color_end:\x23b1ccc5
+SETUVAR fish_color_error:\x23ffb4ab
+SETUVAR fish_color_escape:\x23accae5
+SETUVAR fish_color_keyword:\x23accae5
+SETUVAR fish_color_normal:\x23dee4e1
+SETUVAR fish_color_operator:\x2383d5c5
+SETUVAR fish_color_param:\x23bec9c5
+SETUVAR fish_color_quote:\x23b1ccc5
+SETUVAR fish_color_redirection:\x23accae5
+SETUVAR fish_color_search_match:\x2d\x2dbackground\x3d\x23334b46
+SETUVAR fish_color_selection:\x2d\x2dbackground\x3d\x23005046
+SETUVAR fish_color_valid_path:\x2d\x2dunderline
+SETUVAR fish_greeting:
+SETUVAR fish_pager_color_selected_background:\x2d\x2dbackground\x3d\x23252b2a
+SETUVAR fish_user_paths:/home/izzy/\x2elocal/bin

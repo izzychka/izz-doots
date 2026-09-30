@@ -1,0 +1,161 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <title>izzychka ~/</title>
+    <style>
+      :root {
+        --surface: #151217;
+        --on_surface: #e8e0e8;
+        --primary: #ddb9f7;
+        --on_surface_variant: #cdc3ce;
+        --outline_variant: #4b454d
+      }
+
+      * {
+        box-sizing: border-box
+      }
+
+      body {
+        margin: 0;
+        background: var(--surface);
+        color: var(--on_surface);
+        font: 13px 'Maple Mono', 'Maple Mono NF', 'Maple Mono NF CN', monospace;
+        min-height: 100vh;
+        display: grid;
+        place-items: center
+      }
+
+      main {
+        display: grid;
+        grid-template-columns: 280px 1fr;
+        align-items: center;
+        gap: 55px;
+        width: min(800px, 90vw);
+        padding: 55px 20px
+      }
+
+      svg {
+        width: 100%;
+        color: var(--on_surface_variant);
+        opacity: .6
+      }
+
+      h1 {
+        font-size: 25px;
+        font-weight: 400;
+        color: var(--primary);
+        margin: 0 0 48px;
+        white-space: nowrap
+      }
+
+      h1 span {
+        animation: blink 1.2s steps(1) infinite
+      }
+
+      @keyframes blink {
+        50% {
+          opacity: 0
+        }
+      }
+
+      nav {
+        display: grid;
+        grid-template-columns: repeat(4, 1fr);
+        gap: 24px
+      }
+
+      h2 {
+        font-size: 12px;
+        font-weight: 400;
+        color: var(--primary);
+        margin: 0 0 13px
+      }
+
+      a {
+        display: block;
+        text-decoration: none;
+        color: var(--on_surface_variant);
+        font-size: 11px;
+        line-height: 2.05;
+        white-space: nowrap
+      }
+
+      a:hover,
+      a:focus-visible {
+        color: var(--primary);
+        text-decoration: underline;
+        outline: none
+      }
+
+      footer {
+        margin-top: 36px;
+        font-size: 10px;
+        color: var(--on_surface_variant);
+        opacity: .65
+      }
+
+      @media(max-width:720px) {
+        main {
+          grid-template-columns: 1fr;
+          gap: 20px;
+          justify-items: center
+        }
+
+        svg {
+          width: 180px
+        }
+
+        h1 {
+          font-size: 22px;
+          margin-bottom: 30px
+        }
+
+        nav {
+          gap: 20px
+        }
+      }
+
+      @media(prefers-reduced-motion:reduce) {
+        h1 span {
+          animation: none
+        }
+      }
+    </style>
+    <link rel="stylesheet" href="palette.css">
+  </head>
+  <body>
+    <main><svg viewBox="0 0 280 330" role="img" aria-label="Line drawing of a quiet computer desk beneath a crescent moon" fill="none" stroke="currentColor" stroke-width="1.1" stroke-linejoin="round">
+        <path d="M208 19a25 25 0 1 0 28 33 26 26 0 0 1-28-33z" />
+        <path d="M159 24v10m-5-5h10m90 59v8m-4-4h8M49 51v10m-5-5h10" />
+        <path d="m20 207 141-45 101 48-137 53zM20 207v9l105 56 137-53v-9M29 221v70l8 4v-70m208 0v63l-8 4v-64M125 272v48l8-3v-48" />
+        <path d="m61 91 105-22 2 102-103 28zM69 98l89-19 2 85-91 25zM109 188v18l-20 7 23 12 43-14-20-9v-20" />
+        <path d="m84 119 8 5-8 8m14-3 25-6M84 146l49-13m-49 22 62-17m-62 26 38-11" />
+        <path d="m106 224 62-22 36 16-64 24zM117 225l49-17m-41 21 49-17m-40 21 49-17M158 209l26 11m-40-6 26 11" />
+        <ellipse cx="217" cy="230" rx="10" ry="6" transform="rotate(-18 217 230)" />
+        <path d="m34 182 21-6v24l-21 6zM38 184v13m5-15v13M184 172l22-6v29l-22 7zM206 172c17-6 19 14 0 17" />
+        <path d="m191 136 24-7-4 25-16 5zM202 132c-19-23-29-21-24-10 4 8 15 9 24 10zm0 0c20-34 35-34 29-19-4 9-17 17-29 19zm0 0c-6-31-2-44 6-35 6 8-3 27-6 35z" />
+        <path d="m46 257 46 23-2 32-46-23zM54 266l29 15m-29-8 20 10M144 285l41-14 28 13-43 16zM144 285v9l26 15 43-16v-9m-43 16v9" />
+      </svg>
+      <section>
+        <h1>❯ surfarch ~/<span>_</span></h1>
+        <nav>
+          <div>
+            <h2>personal/</h2><a href="https://mail.google.com/">gmail</a><a href="https://mail.proton.me/">proton</a><a href="https://github.com/">github</a><a href="https://discord.com/app">discord</a>
+          </div>
+          <div>
+            <h2>work/</h2><a href="https://classroom.google.com/">classroom</a><a href="https://drive.google.com/">drive</a><a href="https://calendar.google.com/">calendar</a><a href="https://chatgpt.com/">chatgpt</a>
+          </div>
+          <div>
+            <h2>docs/</h2><a href="https://wiki.archlinux.org/">archwiki</a><a href="https://qutebrowser.org/doc/help/">qutebrowser</a><a href="https://doc.rust-lang.org/book/">rust</a><a href="https://learn.microsoft.com/dotnet/csharp/">csharp</a>
+          </div>
+          <div>
+            <h2>elsewhere/</h2><a href="https://www.youtube.com/">youtube</a><a href="https://www.twitch.tv/">twitch</a><a href="https://wallhaven.cc/">wallhaven</a><a href="https://www.reddit.com/r/unixporn/">unixporn</a>
+          </div>
+        </nav>
+        <footer>o open · t new tab · f follow · ,h home</footer>
+      </section>
+    </main>
+  </body>
+</html>

@@ -1,0 +1,8 @@
+{
+  "surface": "{{colors.surface.dark.hex}}",
+  "on_surface": "{{colors.on_surface.dark.hex}}",
+  "primary": "{{colors.primary.dark.hex}}",
+  "on_surface_variant": "{{colors.on_surface_variant.dark.hex}}",
+  "surface_container_high": "{{colors.surface_container_high.dark.hex}}",
+  "outline_variant": "{{colors.outline_variant.dark.hex}}"
+}

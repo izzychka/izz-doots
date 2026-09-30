@@ -1,0 +1,60 @@
+{
+  "name": "Matugen",
+  "author": "Matugen",
+  "themes": [
+    {
+      "name": "Matugen",
+      "appearance": "dark",
+      "style": {
+        "syntax": {
+          "comment": { "color": "#7f849c" },
+          "string": { "color": "#f5c2e7" },
+          "keyword": {
+            "color": "#cba6f7",
+            "font_weight": 700
+          },
+          "function": { "color": "#89b4fa" },
+          "type": { "color": "#cba6f7" },
+          "variant": { "color": "#89b4fa" },
+          "property": { "color": "#cba6f7" },
+          "operator": { "color": "#bac2de" }
+        },
+        "background": "#1e1e2e",
+        "editor.background": "#1e1e2e",
+        "editor.foreground": "#cdd6f4",
+        "editor.line_number": "#585b70",
+        "editor.active_line_number": "#cdd6f4",
+        "editor.gutter.background": "#1e1e2e",
+        "editor.selection.background": "#585b7060",
+
+        "title_bar.background": "#181825",
+        "title_bar.inactive_background": "#181825",
+
+        "tab_bar.background": "#181825",
+        "tab.active_background": "#1e1e2e",
+        "tab.inactive_background": "#181825",
+        "tab.border": "#585b70",
+
+        "toolbar.background": "#1e1e2e",
+        "panel.background": "#181825",
+        "pane.background": "#1e1e2e",
+        "pane.focused_border": "#cba6f7",
+
+        "status_bar.background": "#181825",
+        "status_bar.foreground": "#bac2de",
+
+        "sidebar.background": "#181825",
+        "project_panel.background": "#181825",
+        "project_panel.selected_entry_background": "#45475a",
+
+        "menu.background": "#585b70",
+        "element.hover": "#45475a",
+        "element.selected": "#585b70",
+
+        "scrollbar.thumb.background": "#585b7060",
+        "scrollbar.thumb.hover_background": "#585b70",
+        "border": "#585b70"
+      }
+    }
+  ]
+}

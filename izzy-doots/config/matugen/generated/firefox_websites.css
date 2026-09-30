@@ -1,0 +1,42 @@
+:root {
+  --background: #1e1e2e;
+  --error: #f38ba8;
+  --error_container: #eba0ac;
+
+  --on_background: #cdd6f4;
+  --on_error: #11111b;
+  --on_error_container: #11111b;
+
+  --primary: #cba6f7;
+  --on_primary: #11111b;
+  --primary_container: #585b70;
+  --on_primary_container: #b4befe;
+  --primary_fixed: #b4befe;
+  --primary_fixed_dim: #cba6f7;
+
+  --secondary: #89b4fa;
+  --on_secondary: #11111b;
+  --secondary_container: #45475a;
+  --on_secondary_container: #cdd6f4;
+
+  --tertiary: #f5c2e7;
+  --on_tertiary: #11111b;
+  --tertiary_container: #585b70;
+  --on_tertiary_container: #f5c2e7;
+
+  --surface: #1e1e2e;
+  --surface_bright: #585b70;
+  --surface_dim: #181825;
+  --surface_container: #313244;
+  --surface_container_low: #181825;
+  --surface_container_lowest: #11111b;
+  --surface_container_high: #45475a;
+  --surface_container_highest: #585b70;
+  --surface_variant: #45475a;
+
+  --on_surface: #cdd6f4;
+  --on_surface_variant: #bac2de;
+
+  --outline: #7f849c;
+  --outline_variant: #585b70;
+}

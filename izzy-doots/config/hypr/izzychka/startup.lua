@@ -1,0 +1,7 @@
+hl.on("hyprland.start", function()
+    hl.exec_cmd("systemctl --user start hyprpolkitagent")
+    hl.exec_cmd("awww-daemon")
+    hl.exec_cmd("qs -p ~/.config/quickshell/izzy-island/")
+    hl.exec_cmd("blueman-applet")
+    hl.exec_cmd("hypridle")
+end)

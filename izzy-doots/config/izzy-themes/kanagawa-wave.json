@@ -1,0 +1,11 @@
+{
+  "rosewater":"#dcd7ba", "flamingo":"#d27e99", "pink":"#d27e99",
+  "mauve":"#957fb8", "red":"#e46876", "maroon":"#c34043",
+  "peach":"#ffa066", "yellow":"#e6c384", "green":"#98bb6c",
+  "teal":"#7aa89f", "sky":"#a3d4d5", "sapphire":"#7fb4ca",
+  "blue":"#7e9cd8", "lavender":"#b8b4d0", "text":"#dcd7ba",
+  "subtext1":"#c8c093", "subtext0":"#9cabca", "overlay2":"#938aa9",
+  "overlay1":"#717c7c", "overlay0":"#727169", "surface2":"#54546d",
+  "surface1":"#363646", "surface0":"#2a2a37", "base":"#1f1f28",
+  "mantle":"#181820", "crust":"#16161d"
+}

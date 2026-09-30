@@ -1,0 +1,8 @@
+[{
+  "name": "Matugen",
+  "enabled": true,
+  "sections": [{
+    "code": "* {\n  background-color: #1e1e2e !important;\n  color: #cdd6f4 !important;\n  border-color: #585b70 !important;\n}\na, a:visited {\n  color: #cba6f7 !important;\n}\ninput, textarea, select {\n  background-color: #313244 !important;\n  color: #cdd6f4 ;\n}",
+    "urlPrefixes": ["http://", "https://"]
+  }]
+}]

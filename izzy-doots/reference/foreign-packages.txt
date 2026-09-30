@@ -1,0 +1,13 @@
+askyy
+gtk
+hyprselect-bin
+maplemono-nf
+maplemono-otf
+parsec-bin
+paru
+python-pywalfox
+spotify
+vesktop
+wallpaper-picker-rs
+yay
+yay-debug

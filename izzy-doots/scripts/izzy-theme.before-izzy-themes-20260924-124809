@@ -1,0 +1,193 @@
+#!/usr/bin/env python3
+"""Apply a curated palette to the user's existing Matugen output paths."""
+import argparse
+import colorsys
+import datetime
+import json
+import os
+from pathlib import Path
+import re
+import shutil
+import signal
+import subprocess
+import sys
+import tomllib
+
+HOME = Path.home()
+CONFIG = HOME / '.config/matugen/config.toml'
+DATA = HOME / '.config/izzy-themes'
+STATE = HOME / '.local/state/izzy-themes'
+TOKEN = re.compile(r'{{\s*(.*?)\s*}}')
+
+# Semantic mapping of Material roles to the *actual* Catppuccin palette.
+# Changing a wallpaper in Matugen has no effect on these preset values.
+ROLES = {
+    'background':'base', 'on_background':'text', 'surface':'base', 'surface_dim':'mantle',
+    'surface_bright':'surface2', 'surface_variant':'surface1', 'surface_tint':'mauve',
+    'surface_container_lowest':'crust', 'surface_container_low':'mantle',
+    'surface_container':'surface0', 'surface_container_high':'surface1',
+    'surface_container_highest':'surface2', 'on_surface':'text',
+    'on_surface_variant':'subtext1', 'outline':'overlay1', 'outline_variant':'surface2',
+    'primary':'mauve', 'on_primary':'crust', 'primary_container':'surface2',
+    'on_primary_container':'lavender', 'primary_fixed':'lavender',
+    'primary_fixed_dim':'mauve', 'on_primary_fixed':'crust',
+    'on_primary_fixed_variant':'surface0', 'secondary':'blue', 'on_secondary':'crust',
+    'secondary_container':'surface1', 'on_secondary_container':'text',
+    'secondary_fixed':'sapphire', 'secondary_fixed_dim':'blue',
+    'on_secondary_fixed':'crust', 'on_secondary_fixed_variant':'surface0',
+    'tertiary':'pink', 'on_tertiary':'crust', 'tertiary_container':'surface2',
+    'on_tertiary_container':'pink', 'tertiary_fixed':'flamingo',
+    'tertiary_fixed_dim':'pink', 'on_tertiary_fixed':'crust',
+    'on_tertiary_fixed_variant':'surface0', 'error':'red', 'on_error':'crust',
+    'error_container':'maroon', 'on_error_container':'crust',
+}
+BASE16 = {
+    'base00':'base','base01':'mantle','base02':'surface0','base03':'overlay0',
+    'base04':'subtext0','base05':'text','base06':'rosewater','base07':'rosewater',
+    'base08':'red','base09':'peach','base0a':'yellow','base0b':'green',
+    'base0c':'teal','base0d':'blue','base0e':'mauve','base0f':'flamingo',
+}
+
+def expand(path):
+    return Path(os.path.expanduser(path))
+
+def shade(hexcolor, amount):
+    r,g,b = (int(hexcolor[i:i+2], 16)/255 for i in (1,3,5))
+    h,l,s = colorsys.rgb_to_hls(r,g,b)
+    if amount.startswith('auto_lightness:'):
+        # Matugen's filter changes legibility; preserve the preset's selected hue.
+        return hexcolor
+    n = float(amount.split(':',1)[1]) / 100
+    l = max(0,min(1,l+n))
+    return '#' + ''.join(f'{round(c*255):02x}' for c in colorsys.hls_to_rgb(h,l,s))
+
+def render(source, palette, wallpaper):
+    def resolve(expr):
+        parts = [part.strip() for part in expr.split('|')]
+        key = parts[0]
+        if key == 'image':
+            return str(wallpaper)
+        components = key.split('.')
+        if len(components) != 4 or components[2] not in ('dark','default') or components[3] not in ('hex','hex_stripped'):
+            raise ValueError(f'Unsupported Matugen expression: {expr}')
+        group, role, _, kind = components
+        mapping = ROLES if group == 'colors' else BASE16 if group == 'base16' else None
+        if mapping is None or role not in mapping:
+            raise ValueError(f'Unmapped Matugen colour: {expr}')
+        color = palette[mapping[role]]
+        for modifier in parts[1:]:
+            if not (modifier.startswith('lighten:') or modifier.startswith('auto_lightness:')):
+                raise ValueError(f'Unsupported Matugen filter: {expr}')
+            color = shade(color, modifier)
+        return color[1:] if kind == 'hex_stripped' else color
+
+    # One template expands the Matugen for-loop over available colours.
+    loop = re.compile(r'<\* for name, value in colors \*>(.*?)<\* endfor \*>', re.S)
+    def expand_loop(match):
+        return ''.join(match[1].replace('{{name}}', role).replace('{{value.default.hex}}',palette[key])
+                       for role,key in ROLES.items())
+    source = loop.sub(expand_loop, source)
+    if '<*' in source:
+        raise ValueError('Unsupported Matugen loop or control block')
+    return TOKEN.sub(lambda match:resolve(match[1]),source)
+
+def entries():
+    config = tomllib.loads(CONFIG.read_text())
+    result = list(config.get('templates',{}).items())
+    result += [(f'legacy_{i}', entry) for i,entry in enumerate(config.get('config',{}).get('templates',[]))]
+    return [(name,expand(info['input_path']),expand(info['output_path'])) for name,info in result]
+
+def commands(name, output):
+    if name == 'hyprland_lua': return [['hyprctl','reload']]
+    if name == 'pywalfox': return [['pywalfox','update']]
+    if name == 'spicetify': return [['bash',str(HOME / '.config/matugen/scripts/spicetify-refresh.sh')]]
+    if name == 'kde': return [['bash',str(output)]]
+    if name == 'izzy_qutebrowser': return [['python3',str(HOME / '.config/qutebrowser/izzy/refresh.py')]]
+    if name == 'izzy_pixie': return [['python3',str(HOME / '.config/izzy-pixie/refresh.py')]]
+    if name == 'dunst': return [['dunstctl','reload']]
+    return []
+
+def refresh(rendered):
+    for name,output,_ in rendered:
+        if name == 'kitty':
+            p = subprocess.run(['pgrep','-x','kitty'],capture_output=True,text=True)
+            for pid in p.stdout.split():
+                try: os.kill(int(pid),signal.SIGUSR1)
+                except (OSError,ValueError): pass
+        if name == 'waybar':
+            subprocess.run(['pkill','-SIGUSR2','-x','waybar'],capture_output=True)
+        for command in commands(name,output):
+            if not Path(command[-1]).exists() and command[0] in ('bash','python3'):
+                continue
+            try:
+                p = subprocess.run(command,timeout=60,capture_output=True,text=True)
+                if p.returncode: print(f'Note: {name} refresh: {p.stderr.strip() or p.stdout.strip() or p.returncode}',file=sys.stderr)
+            except (OSError,subprocess.TimeoutExpired) as e:
+                print(f'Note: {name} refresh: {e}',file=sys.stderr)
+
+def preset():
+    palette = json.loads((DATA/'catppuccin-mocha.json').read_text())
+    wallpaper = DATA/'wallpapers/catppuccin-mocha.png'
+    if not wallpaper.is_file(): raise FileNotFoundError(wallpaper)
+    rendered=[]
+    for name,src,dest in entries():
+        if not src.is_file(): raise FileNotFoundError(src)
+        output=render(src.read_text(),palette,wallpaper)
+        if TOKEN.search(output): raise ValueError(f'Unresolved expression in {src}')
+        rendered.append((name,dest,output))
+    backup = STATE/'backups'/datetime.datetime.now().strftime('%Y%m%d-%H%M%S-%f')
+    for _,dest,_ in rendered:
+        if dest.exists():
+            copy=backup / dest.relative_to(HOME) if dest.is_relative_to(HOME) else backup/'external'/dest.name
+            copy.parent.mkdir(parents=True,exist_ok=True)
+            shutil.copy2(dest,copy)
+    for _,dest,output in rendered:
+        dest.parent.mkdir(parents=True,exist_ok=True)
+        temp=dest.with_name(dest.name+'.izzy-temp')
+        temp.write_text(output)
+        temp.replace(dest)
+    STATE.mkdir(parents=True,exist_ok=True)
+    (STATE/'mode').write_text('catppuccin-mocha\n')
+    print(f'Applied Catppuccin Mocha to {len(rendered)} templates; output backup: {backup}')
+    try:
+        subprocess.run(['awww','img','--transition-type','center',str(wallpaper)],check=True,timeout=30)
+    except (OSError,subprocess.CalledProcessError,subprocess.TimeoutExpired) as e:
+        print(f'Note: wallpaper setter did not complete: {e}',file=sys.stderr)
+    refresh(rendered)
+    print('Browser extension JSON files were regenerated; extensions that require manual import still require it.')
+
+def wallpaper(image):
+    if not image:
+        saved=STATE/'last-wallpaper'
+        island=HOME/'.local/state/izzy-island/wallpaper.txt'
+        if saved.is_file(): image=saved.read_text().strip()
+        elif island.is_file(): image=island.read_text().strip()
+        else: raise ValueError('Give a wallpaper path on the first switch back: izzy-theme wallpaper /path/to/image.jpg')
+    image=expand(image).resolve()
+    if not image.is_file(): raise FileNotFoundError(image)
+    if image.suffix.lower() not in ('.jpg','.jpeg','.png','.webp','.bmp'):
+        raise ValueError('Wallpaper must be a PNG, JPEG, WebP or BMP')
+    subprocess.run(['awww','img','--transition-type','center',str(image)],check=True,timeout=30)
+    subprocess.run(['matugen','image',str(image),'--source-color-index','0'],check=True,timeout=180)
+    STATE.mkdir(parents=True,exist_ok=True)
+    (STATE/'last-wallpaper').write_text(str(image)+'\n')
+    (STATE/'mode').write_text('wallpaper\n')
+    island=HOME/'.local/state/izzy-island/wallpaper.txt'
+    island.parent.mkdir(parents=True,exist_ok=True)
+    island.write_text(str(image))
+    print(f'Wallpaper/Matugen mode: {image}')
+
+def main():
+    parser=argparse.ArgumentParser(description='Switch the whole Izzy rice between wallpaper colours and Catppuccin Mocha')
+    parser.add_argument('mode',choices=['catppuccin','wallpaper','status'])
+    parser.add_argument('image',nargs='?')
+    args=parser.parse_args()
+    if args.mode=='catppuccin': preset()
+    elif args.mode=='wallpaper': wallpaper(args.image)
+    else: print((STATE/'mode').read_text().strip() if (STATE/'mode').exists() else 'wallpaper (assumed)')
+
+if __name__=='__main__':
+    try: main()
+    except (OSError,ValueError,subprocess.CalledProcessError) as e:
+        print(f'Theme switch failed: {e}',file=sys.stderr)
+        sys.exit(1)

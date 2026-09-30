@@ -1,0 +1,86 @@
+@define-color bg {{colors.background.default.hex}};
+@define-color surface {{colors.surface.default.hex}};
+@define-color surface_low {{colors.surface_container_low.default.hex}};
+@define-color surface_container {{colors.surface_container.default.hex}};
+@define-color surface_high {{colors.surface_container_high.default.hex}};
+@define-color primary {{colors.primary.default.hex}};
+@define-color primary_container {{colors.primary_container.default.hex}};
+@define-color text {{colors.on_surface.default.hex}};
+@define-color muted {{colors.on_surface_variant.default.hex}};
+@define-color outline {{colors.outline_variant.default.hex}};
+@define-color error {{colors.error.default.hex}};
+
+window,
+.background {
+    background-color: @bg;
+    color: @text;
+}
+
+toolbar,
+headerbar {
+    background-color: @surface_low;
+    color: @text;
+    border-color: @outline;
+}
+
+.sidebar,
+treeview {
+    background-color: @surface_low;
+    color: @text;
+}
+
+.view {
+    background-color: @bg;
+    color: @text;
+}
+
+.view:selected,
+treeview:selected {
+    background-color: @primary_container;
+    color: @text;
+}
+
+button {
+    background-color: @surface_container;
+    color: @text;
+    border-color: @outline;
+}
+
+button:hover {
+    background-color: @surface_high;
+}
+
+entry {
+    background-color: @surface_container;
+    color: @text;
+    border-color: @outline;
+}
+
+entry:focus {
+    border-color: @primary;
+}
+
+menu,
+menuitem,
+popover {
+    background-color: @surface;
+    color: @text;
+}
+
+menuitem:hover {
+    background-color: @surface_high;
+}
+
+scrollbar slider {
+    background-color: @muted;
+    border-radius: 999px;
+}
+
+scrollbar slider:hover {
+    background-color: @primary;
+}
+
+tooltip {
+    background-color: @surface_high;
+    color: @text;
+}

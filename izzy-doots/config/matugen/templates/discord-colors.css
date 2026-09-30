@@ -1,0 +1,36 @@
+/**
+ * @name system24 matugen
+ */
+@import url('https://refact0r.github.io/system24/build/system24.css');
+
+:root {
+    --bg-1: #{{ colors.surface_container_high.default.hex_stripped }};
+    --bg-2: #{{ colors.surface_container.default.hex_stripped }};
+    --bg-3: #{{ colors.surface_container_low.default.hex_stripped }};
+    --bg-4: #{{ colors.background.default.hex_stripped }};
+
+    --text-1: #{{ colors.on_surface.default.hex_stripped }};
+    --text-2: #{{ colors.on_surface.default.hex_stripped }};
+    --text-3: #{{ colors.on_surface_variant.default.hex_stripped }};
+    --text-4: #{{ colors.outline.default.hex_stripped }};
+    --text-5: #{{ colors.outline_variant.default.hex_stripped }};
+
+    --red-1: #{{ colors.primary_fixed.default.hex_stripped }};
+    --red-2: #{{ colors.primary.default.hex_stripped }};
+    --red-3: #{{ colors.primary.default.hex_stripped }};
+    --red-4: #{{ colors.primary_fixed_dim.default.hex_stripped }};
+    --red-5: #{{ colors.on_primary_container.default.hex_stripped }};
+
+    --colors: on;
+    --hover: hsla(230, 15%, 53%, 0.1);
+    --active: hsla(230, 15%, 53%, 0.2);
+    --active-2: hsla(230, 15%, 53%, 0.3);
+    --message-hover: hsla(230, 0%, 0%, 0.1);
+}
+
+body {
+    --font: 'DM Mono';
+    --code-font: 'DM Mono';
+    font-weight: 300;
+    /* ... rest of your body options ... */
+}

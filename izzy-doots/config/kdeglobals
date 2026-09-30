@@ -1,0 +1,109 @@
+[ColorEffects:Disabled]
+ChangeSelectionColor=
+Color=
+ColorAmount=
+ColorEffect=
+ContrastAmount=
+ContrastEffect=
+Enable=
+IntensityAmount=
+IntensityEffect=
+
+[ColorEffects:Inactive]
+ChangeSelectionColor=
+Color=
+ColorAmount=
+ColorEffect=
+ContrastAmount=
+ContrastEffect=
+Enable=
+IntensityAmount=
+IntensityEffect=
+
+[Colors:Button]
+BackgroundAlternate=69,71,90
+BackgroundNormal=49,50,68
+DecorationFocus=203,166,247
+DecorationHover=203,166,247
+ForegroundInactive=186,194,222
+ForegroundNormal=205,214,244
+
+[Colors:Complementary]
+BackgroundNormal=49,50,68
+DecorationFocus=203,166,247
+DecorationHover=203,166,247
+ForegroundNormal=205,214,244
+
+[Colors:Header]
+BackgroundAlternate=49,50,68
+BackgroundNormal=24,24,37
+DecorationFocus=203,166,247
+DecorationHover=203,166,247
+ForegroundInactive=186,194,222
+ForegroundNormal=205,214,244
+
+[Colors:Selection]
+BackgroundNormal=88,91,112
+DecorationFocus=203,166,247
+DecorationHover=203,166,247
+ForegroundNormal=180,190,254
+
+[Colors:Tooltip]
+BackgroundNormal=69,71,90
+ForegroundNormal=205,214,244
+
+[Colors:View]
+BackgroundAlternate=24,24,37
+BackgroundNormal=30,30,46
+DecorationFocus=203,166,247
+DecorationHover=203,166,247
+ForegroundActive=203,166,247
+ForegroundInactive=186,194,222
+ForegroundLink=203,166,247
+ForegroundNegative=243,139,168
+ForegroundNeutral=137,180,250
+ForegroundNormal=205,214,244
+ForegroundPositive=245,194,231
+ForegroundVisited=245,194,231
+
+[Colors:Window]
+BackgroundNormal=30,30,46
+DecorationFocus=203,166,247
+DecorationHover=203,166,247
+ForegroundNormal=205,214,244
+
+[General]
+ColorScheme=Matugen
+ColorSchemeHash=7584f08dec0b97c74bafb559c8e987ffc998a121
+
+[Icons]
+Theme=Papirus-Dark
+
+[KDE]
+contrast=4
+frameContrast=0.2
+
+[KFileDialog Settings]
+Allow Expansion=false
+Automatically select filename extension=true
+Breadcrumb Navigation=true
+Decoration position=2
+Show Full Path=false
+Show Inline Previews=true
+Show Preview=false
+Show Speedbar=true
+Show hidden files=false
+Sort by=Name
+Sort directories first=true
+Sort hidden files last=false
+Sort reversed=false
+Speedbar Width=144
+View Style=DetailTree
+
+[WM]
+activeBackground=49,50,68
+activeBlend=24,24,37
+activeForeground=205,214,244
+inactiveBackground=24,24,37
+inactiveBlend=24,24,37
+inactiveForeground=186,194,222

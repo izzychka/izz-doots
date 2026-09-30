@@ -1,0 +1,8 @@
+[{
+  "name": "Matugen",
+  "enabled": true,
+  "sections": [{
+    "code": "* {\n  background-color: #{{ colors.background.default.hex_stripped }} !important;\n  color: #{{ colors.on_surface.default.hex_stripped }} !important;\n  border-color: #{{ colors.outline_variant.default.hex_stripped }} !important;\n}\na, a:visited {\n  color: #{{ colors.primary.default.hex_stripped }} !important;\n}\ninput, textarea, select {\n  background-color: #{{ colors.surface_container.default.hex_stripped }} !important;\n  color: #{{ colors.on_surface.default.hex_stripped }} ;\n}",
+    "urlPrefixes": ["http://", "https://"]
+  }]
+}]

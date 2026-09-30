@@ -1,0 +1,60 @@
+{
+  "name": "Matugen",
+  "author": "Matugen",
+  "themes": [
+    {
+      "name": "Matugen",
+      "appearance": "dark",
+      "style": {
+        "syntax": {
+          "comment": { "color": "{{colors.outline.default.hex}}" },
+          "string": { "color": "{{colors.tertiary.default.hex}}" },
+          "keyword": {
+            "color": "{{colors.primary.default.hex}}",
+            "font_weight": 700
+          },
+          "function": { "color": "{{colors.secondary.default.hex}}" },
+          "type": { "color": "{{colors.primary.default.hex}}" },
+          "variant": { "color": "{{colors.secondary.default.hex}}" },
+          "property": { "color": "{{colors.primary.default.hex}}" },
+          "operator": { "color": "{{colors.on_surface_variant.default.hex}}" }
+        },
+        "background": "{{colors.surface.default.hex}}",
+        "editor.background": "{{colors.surface.default.hex}}",
+        "editor.foreground": "{{colors.on_surface.default.hex}}",
+        "editor.line_number": "{{colors.outline_variant.default.hex}}",
+        "editor.active_line_number": "{{colors.on_surface.default.hex}}",
+        "editor.gutter.background": "{{colors.surface.default.hex}}",
+        "editor.selection.background": "{{colors.primary_container.default.hex}}60",
+
+        "title_bar.background": "{{colors.surface_container_low.default.hex}}",
+        "title_bar.inactive_background": "{{colors.surface_container_low.default.hex}}",
+
+        "tab_bar.background": "{{colors.surface_container_low.default.hex}}",
+        "tab.active_background": "{{colors.surface.default.hex}}",
+        "tab.inactive_background": "{{colors.surface_container_low.default.hex}}",
+        "tab.border": "{{colors.outline_variant.default.hex}}",
+
+        "toolbar.background": "{{colors.surface.default.hex}}",
+        "panel.background": "{{colors.surface_container_low.default.hex}}",
+        "pane.background": "{{colors.surface.default.hex}}",
+        "pane.focused_border": "{{colors.primary.default.hex}}",
+
+        "status_bar.background": "{{colors.surface_container_low.default.hex}}",
+        "status_bar.foreground": "{{colors.on_surface_variant.default.hex}}",
+
+        "sidebar.background": "{{colors.surface_container_low.default.hex}}",
+        "project_panel.background": "{{colors.surface_container_low.default.hex}}",
+        "project_panel.selected_entry_background": "{{colors.secondary_container.default.hex}}",
+
+        "menu.background": "{{colors.surface_container_highest.default.hex}}",
+        "element.hover": "{{colors.surface_container_high.default.hex}}",
+        "element.selected": "{{colors.primary_container.default.hex}}",
+
+        "scrollbar.thumb.background": "{{colors.outline_variant.default.hex}}60",
+        "scrollbar.thumb.hover_background": "{{colors.outline_variant.default.hex}}",
+        "border": "{{colors.outline_variant.default.hex}}"
+      }
+    }
+  ]
+}

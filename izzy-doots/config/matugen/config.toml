@@ -1,0 +1,126 @@
+[config.wallpaper]
+# Whether to set the wallpaper or not
+set = false
+
+# The base command to run for applying the wallpaper.
+# Keywords like {{ image }} or anything that works inside of hooks works here.
+# You could also set a static color if you use the color keywords and the wallpaper setter supports it.
+command = "awww img --transition-type center {{ image }}"
+
+# For example, killing the wallpaper daemon. Usage is like a normal hook.
+# pre_hook = ""
+
+
+[templates.hyprland_lua]
+input_path = "~/.config/matugen/templates/hypr-colors.lua"
+output_path = '~/.config/hypr/izzychka/colors.lua'
+post_hook = "hyprctl reload"
+
+[templates.kitty]
+input_path = '~/.config/matugen/templates/kitty-colors.conf'
+output_path = '~/.config/kitty/colors.conf'
+post_hook = 'kill -SIGUSR1 $(pgrep kitty)'
+
+[templates.rofi]
+input_path = '~/.config/matugen/templates/rofi-colors.rasi'
+output_path = '~/.config/rofi/colors/colors.rasi'
+
+[templates.waybar]
+input_path = '~/.config/matugen/templates/colors.css'
+output_path = '~/.config/waybar/colors.css'
+post_hook = 'pkill -SIGUSR2 -x waybar || true'
+
+[templates.discord]
+input_path = '~/.config/matugen/templates/discord-colors.css'
+output_path = '~/.config/vesktop/themes/matugen.css'
+
+[templates.pywalfox]
+input_path = '~/.config/matugen/templates/pywalfox-colors.json'
+output_path = '~/.cache/wal/colors.json'
+post_hook = 'pywalfox update'
+
+[templates.stylus]
+input_path = '~/.config/matugen/templates/stylus-colors.json'
+output_path = '~/.config/matugen/stylus-output.json'
+
+[templates.darkreader]
+input_path = '~/.config/matugen/templates/darkreader.json'
+output_path = '~/.config/matugen/darkreader.json'
+
+[templates.fish]
+input_path = '~/.config/matugen/templates/fish-colors.fish'
+output_path = '~/.config/fish/matugen-colors.fish'
+
+[templates.yazi]
+input_path = "~/.config/matugen/templates/yazi-colors.toml"
+output_path = "~/.config/yazi/theme.toml"
+
+[templates.cava]
+input_path = "~/.config/matugen/templates/cava-colors.conf"
+output_path = "~/.config/cava/config"
+
+[[config.templates]]
+input_path = "~/.config/matugen/templates/nvim.vim"
+output_path = "~/.config/nvim/colors/matugen.vim"
+post_exec = ["bash", "-c", "nvim --server /tmp/nvim.sock --remote-send ':colorscheme matugen<CR>' 2>/dev/null || true"]
+
+[templates.zed]
+input_path = '~/.config/matugen/templates/zed.json'
+output_path = '~/.config/zed/themes/matugen.json'
+
+[templates.dunst]
+input_path = '~/.config/matugen/templates/dunst.conf'
+output_path = '~/.config/dunst/dunstrc'
+# This command tells dunst to reload the config immediately
+post_command = 'dunstctl reload'
+
+[templates.firefox_websites]
+input_path = '~/.config/matugen/templates/firefox_websites.css'
+output_path = '~/.config/matugen/generated/firefox_websites.css'
+
+[templates.spicetify]
+input_path = '~/.config/matugen/templates/spicetify-text.ini'
+output_path = '~/.config/spicetify/Themes/text-matugen/color.ini'
+post_hook = '/home/surfarch/.config/matugen/scripts/spicetify-refresh.sh'
+
+[templates.nvim]
+input_path = '~/.config/matugen/templates/nvim-colors.lua'
+output_path = '~/.config/nvim/lua/matugen.lua'
+post_hook = 'pkill -USR1 nvim || true'
+
+[templates.fastfetch]
+input_path = '~/.config/matugen/templates/fastfetch.jsonc'
+output_path = '~/.config/fastfetch/config.jsonc'
+
+[templates.obsidian]
+input_path = '~/.config/matugen/templates/obsidian.css'
+output_path = '~/Documents/Work/.obsidian/snippets/matugen.css'
+
+[templates.gtk]
+input_path = '~/.config/matugen/templates/gtk-matugen.css'
+output_path = '~/.config/gtk-3.0/matugen.css'
+
+[templates.kde]
+input_path = '~/.config/matugen/templates/kde-matugen.sh'
+output_path = '~/.config/matugen/generated/kde-matugen.sh'
+post_hook = 'bash /home/surfarch/.config/matugen/generated/kde-matugen.sh'
+
+
+# BEGIN IZZY QUTE
+[templates.izzy_qutebrowser]
+input_path = "/home/surfarch/.config/matugen/templates/izzy-qutebrowser.json"
+output_path = "/home/surfarch/.config/qutebrowser/izzy/palette.json"
+post_hook = "python3 /home/surfarch/.config/qutebrowser/izzy/refresh.py"
+# END IZZY QUTE
+# BEGIN IZZY PIXIE MATUGEN
+[templates.izzy_pixie]
+input_path = "/home/surfarch/.config/matugen/templates/izzy-pixie.palette"
+output_path = "/home/surfarch/.config/matugen/generated/izzy-pixie.palette"
+post_hook = "python3 /home/surfarch/.config/izzy-pixie/refresh.py"
+# END IZZY PIXIE MATUGEN
+
+# BEGIN IZZY ISLAND (managed by izzy-island-install.py)
+[templates.izzy_island]
+input_path = '~/.config/matugen/templates/izzy-island-colors.json'
+output_path = '~/.config/izzy-island/colors.json'
+# END IZZY ISLAND

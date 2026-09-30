@@ -1,0 +1,7 @@
+#!/bin/bash
+
+waydroid show-full-ui &
+
+sleep 2
+
+sudo waydroid shell settings put global policy_control 'immersive.full=*'

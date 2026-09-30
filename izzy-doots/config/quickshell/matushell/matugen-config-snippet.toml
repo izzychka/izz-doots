@@ -1,0 +1,22 @@
+# Add this to ~/.config/matugen/config.toml (create the file if it
+# doesn't exist yet). It tells matugen to:
+#   1. set the wallpaper itself via awww ("swww" also works, it's the
+#      compat symlink),
+#   2. regenerate matushell's colors.json every time you run
+#      `matugen image <path>`.
+#
+# You can add more [templates.*] blocks here later for other apps
+# (kitty, gtk, etc.) — that's the whole point of matugen.
+
+[config]
+reload_apps = false
+
+[config.wallpaper]
+set = true
+command = "awww"
+arguments = ["img", "--transition-type", "wipe", "--transition-fps", "60"]
+# pre_hook = "awww-daemon &"   # uncomment if the daemon isn't autostarted elsewhere
+
+[templates.matushell]
+input_path = "~/.config/quickshell/matushell/Theme/matugen-templates/colors.json.template"
+output_path = "~/.config/quickshell/matushell/data/colors.json"
