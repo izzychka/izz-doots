@@ -1,0 +1,9 @@
+__pycache__/
+*.pyc
+*.log
+izzy-doots/config/vesktop/*
+!izzy-doots/config/vesktop/themes/
+izzy-doots/config/spotify/
+izzy-doots/config/qutebrowser/autoconfig.yml
+izzy-doots/config/qutebrowser/qsettings/
+*.zip
