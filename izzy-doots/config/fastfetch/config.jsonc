@@ -16,7 +16,7 @@
   "modules": [
     {
       "type": "title",
-      "format": "izzy@surfarch",
+      "format": "{host-name}",
       "keyWidth": 8
     },
 
